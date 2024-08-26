@@ -10,10 +10,23 @@ import {
 
 //Import pages
 import App from './components/App.tsx'
+import Home from './components/pages/Home.tsx'
+import BusinessPage from './components/pages/BusinessPage.tsx'
+import UserProfile from './components/pages/UserProfile.tsx'
+import StackDetail from './components/pages/StackDetail.tsx'
+import TileDetail from './components/pages/TileDetail.tsx'
 
 //Define routes
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<App />}></Route>),
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index element={<Home />} />
+      <Route path="account/:username" element={<UserProfile />} />
+      <Route path="tile/:id" element={<TileDetail />} />
+      <Route path=":username" element={<BusinessPage />} />
+      <Route path=":username/:stackname" element={<StackDetail />} />
+    </Route>,
+  ),
 )
 
 //Define queryclient
