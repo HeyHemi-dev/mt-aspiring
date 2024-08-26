@@ -1,12 +1,11 @@
-//import { createClient } from '@supabase/supabase-js'
+import supabase from 'server/supabaseClient'
 import express from 'express'
 
 const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
-    //const { data } = await supabase.from('tiles').select()
-    const data = 'Hello'
+    const { data } = await supabase.from('tiles').select()
     res.json(data)
   } catch {
     res.status(500)
