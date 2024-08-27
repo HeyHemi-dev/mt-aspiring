@@ -22,11 +22,11 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
       <Route path="tiles/new" element={<TileDetail />} />
-      <Route path="tiles/:tile-id" element={<TileDetail />} />
-      <Route path="tiles/:tile-id/edit" element={<TileDetail />} />
-      <Route path="suppliers/:supplier-name" element={<BusinessPage />} />
+      <Route path="tiles/:tileId" element={<TileDetail />} />
+      <Route path="tiles/:tileId/edit" element={<TileDetail />} />
+      <Route path="suppliers/:supplierName" element={<BusinessPage />} />
       <Route path=":username" element={<UserProfile />} />
-      <Route path=":username/:stack-id" element={<StackDetail />} />
+      <Route path=":username/:stackId" element={<StackDetail />} />
     </Route>,
   ),
 )
