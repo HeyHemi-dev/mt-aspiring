@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
-import useShowTileById from '@/hooks/useShowTileById'
 import { useParams } from 'react-router-dom'
+import * as api from '../../api/apiClient'
 
 const TileDetail = () => {
   const { tileId } = useParams()
 
   const { data, isPending, isError, isSuccess } = useQuery({
     queryKey: ['tile', tileId],
-    queryFn: () => useShowTileById(tileId),
+    queryFn: () => api.getTileById(tileId),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
