@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import * as api from '../../api/apiClient'
+import TileExpanded from '../TileExpanded'
 
 const TileDetail = () => {
   const { tileId } = useParams()
@@ -16,7 +17,7 @@ const TileDetail = () => {
   let outlet = <></>
   isPending && (outlet = <p>Loading...</p>)
   isError && (outlet = <p>Error Loading Tile</p>)
-  isSuccess && (outlet = <p>Tile Detail</p>)
+  isSuccess && (outlet = <TileExpanded tile={data} />)
 
   console.log(data)
 
