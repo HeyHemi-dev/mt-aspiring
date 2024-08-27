@@ -1,5 +1,6 @@
 import supabase from 'server/supabaseClient'
 import express from 'express'
+import camelcaseKeys from 'camelcase-keys'
 
 const router = express.Router()
 
@@ -10,7 +11,11 @@ router.get('/', async (req, res) => {
       .from('tiles')
       .select()
       .eq('is_private', false)
-    res.json(data)
+
+    let tiles
+    data ? (tiles = camelcaseKeys(data)) : (tiles = [])
+
+    res.json(tiles)
   } catch {
     res.status(500)
   }
