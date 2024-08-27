@@ -1,7 +1,10 @@
+import TileList from '../TileList'
+
 const Home = () => {
   return (
     <>
       <div>Home Feed</div>
+      <TileList />
     </>
   )
 }

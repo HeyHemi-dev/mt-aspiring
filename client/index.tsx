@@ -21,10 +21,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Home />} />
-      <Route path="account/:username" element={<UserProfile />} />
-      <Route path="tile/:id" element={<TileDetail />} />
-      <Route path=":username" element={<BusinessPage />} />
-      <Route path=":username/:stackname" element={<StackDetail />} />
+      <Route path="tiles/:tile-id" element={<TileDetail />} />
+      <Route path="suppliers/:supplier-name" element={<BusinessPage />} />
+      <Route path=":username" element={<UserProfile />} />
+      <Route path=":username/:stack-id" element={<StackDetail />} />
     </Route>,
   ),
 )
