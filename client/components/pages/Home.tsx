@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import TileList from '../TileList'
-import useShowTiles from '@/hooks/use-Show-Tiles'
+import useShowTiles from '@/hooks/useShowTiles'
 
 const Home = () => {
   const { data, isPending, isError, isSuccess } = useQuery({
     queryKey: ['tiles'],
-    queryFn: () => useShowTiles(''),
+    queryFn: () => useShowTiles(),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
