@@ -4,7 +4,7 @@ import camelcaseKeys from 'camelcase-keys'
 
 const router = express.Router()
 
-//Get all public tiles
+//Get home feed tiles [PUBLIC]
 router.get('/', async (req, res) => {
   try {
     const { data } = await supabase
@@ -21,24 +21,39 @@ router.get('/', async (req, res) => {
   }
 })
 
-//TODO Get all public tiles
-router.post('/', async (req, res) => {
+//Get a tile [PUBLIC]
+router.get('/:id', async (req, res) => {
   try {
-    const newTile = {
-      title: 'Test tile',
-      description: 'This is a new tile, created for testing purposes.',
-      is_private: false,
-    }
+    const tileId = req.params.id
+    const { data } = await supabase.from('tiles').select().eq('id', tileId)
 
-    const { data, error } = await supabase
-      .from('tiles')
-      .insert(newTile)
-      .select()
+    let tile
+    data ? (tile = camelcaseKeys(data)) : (tile = {})
 
-    error ? console.log(error.message) : res.json(data)
+    res.json(tile)
   } catch {
     res.status(500)
   }
 })
+
+//TODO Get all public tiles
+// router.post('/', async (req, res) => {
+//   try {
+//     const newTile = {
+//       title: 'Test tile',
+//       description: 'This is a new tile, created for testing purposes.',
+//       is_private: false,
+//     }
+
+//     const { data, error } = await supabase
+//       .from('tiles')
+//       .insert(newTile)
+//       .select()
+
+//     error ? console.log(error.message) : res.json(data)
+//   } catch {
+//     res.status(500)
+//   }
+// })
 
 export default router
