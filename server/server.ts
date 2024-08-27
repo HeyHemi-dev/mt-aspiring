@@ -1,18 +1,15 @@
 import * as Path from 'node:path'
 import express from 'express'
 import cors, { CorsOptions } from 'cors'
+import tileRoutes from './routes/tiles'
 
 const server = express()
 
-server.get('/api/v1/greeting', (req, res) => {
-  const greetings = ['hola', 'hi', 'hello', 'howdy']
-  const index = Math.floor(Math.random() * greetings.length)
-  console.log(index)
-  res.json({ greeting: greetings[index] })
-})
-
 server.use(express.json())
 server.use(cors('*' as CorsOptions))
+
+// Server Routes
+server.use('/api/v1/tiles', tileRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
