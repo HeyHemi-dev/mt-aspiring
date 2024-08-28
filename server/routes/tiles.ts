@@ -1,4 +1,3 @@
-import supabase from 'server/supabaseClient'
 import express from 'express'
 import * as db from '../db/index.ts'
 import camelcaseKeys from 'camelcase-keys'
