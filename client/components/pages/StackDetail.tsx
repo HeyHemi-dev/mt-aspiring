@@ -1,4 +1,4 @@
-const StackDetail = () => {
+function StackDetail() {
   return (
     <>
       <div>Stack Detail</div>

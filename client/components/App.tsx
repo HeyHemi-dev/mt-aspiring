@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom'
 import { ThemeProvider } from './ThemeProvider'
-import { ModeToggle } from './ModeToggle'
+import ModeToggle from './ModeToggle'
 
-const App = () => {
+function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="grid min-h-[100svh] grid-rows-[auto_1fr_auto]">

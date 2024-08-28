@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import * as api from '../../api/apiClient'
 import TileExpanded from '../TileExpanded'
 
-const TileDetail = () => {
+function TileDetail() {
   const { tileId } = useParams()
 
   const { data, isPending, isError, isSuccess } = useQuery({
