@@ -3,8 +3,8 @@ export function up(knex) {
     'user_saved_tiles',
     (table) => (
       table.integer('id').primary(),
-      table.string('saved_by'),
-      table.string('tile_id')
+      table.integer('saved_by'),
+      table.integer('tile_id')
     ),
   )
 }

@@ -1,6 +1,5 @@
 import supabase from 'server/supabaseClient'
 import express from 'express'
-import * as db from '../db/index.ts'
 import camelcaseKeys from 'camelcase-keys'
 
 const router = express.Router()
@@ -8,7 +7,10 @@ const router = express.Router()
 //Get home feed tiles [PUBLIC]
 router.get('/', async (req, res) => {
   try {
-    const data = await db.connection('tiles').where('is_private', 0).select()
+    const { data } = await supabase
+      .from('tiles')
+      .select()
+      .eq('is_private', false)
 
     let tiles
     data ? (tiles = camelcaseKeys(data)) : (tiles = [])
@@ -23,11 +25,12 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const tileId = req.params.id
-    const data = await db
-      .connection('tiles')
-      .where('id', tileId)
+    const { data } = await supabase
+      .from('tiles')
       .select()
-      .first()
+      .eq('id', tileId)
+      .limit(1)
+      .single()
 
     let tile
     data ? (tile = camelcaseKeys(data)) : (tile = {})

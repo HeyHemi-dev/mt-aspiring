@@ -3,9 +3,10 @@ export function up(knex) {
     'users',
     (table) => (
       table.integer('id').primary(),
-      table.string('user_auth'),
+      table.string('user_auth'), // uuid
+      table.string('username'), // a-z, 0-9, "-"
       table.string('name'),
-      table.string('user_type')
+      table.string('user_type') // "personal" | "business"
     ),
   )
 }

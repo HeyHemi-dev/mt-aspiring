@@ -11,17 +11,17 @@ function Home() {
     refetchOnMount: false,
   })
 
-  let feedOutlet = <></>
-  isPending && (feedOutlet = <p>Loading...</p>)
-  isError && (feedOutlet = <p>Error Loading Tiles</p>)
-  isSuccess && (feedOutlet = <TileList tiles={data} />)
+  let outlet = <></>
+  isPending && (outlet = <p>Loading...</p>)
+  isError && (outlet = <p>Error Loading Tiles</p>)
+  isSuccess && (outlet = <TileList tiles={data} />)
 
   console.log(data)
 
   return (
     <>
       <div>Home Feed</div>
-      {feedOutlet}
+      {outlet}
     </>
   )
 }

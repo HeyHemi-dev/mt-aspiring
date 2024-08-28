@@ -12,7 +12,7 @@ function App() {
             <ModeToggle />
           </div>
         </header>
-        <main className="row-start-2 row-end-3 flex flex-col items-center gap-4 self-center">
+        <main className="row-start-2 row-end-3">
           <Outlet />
         </main>
         <footer>Footer</footer>
