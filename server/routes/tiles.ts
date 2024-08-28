@@ -25,7 +25,12 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const tileId = req.params.id
-    const { data } = await supabase.from('tiles').select().eq('id', tileId)
+    const { data } = await supabase
+      .from('tiles')
+      .select()
+      .eq('id', tileId)
+      .limit(1)
+      .single()
 
     let tile
     data ? (tile = camelcaseKeys(data)) : (tile = {})

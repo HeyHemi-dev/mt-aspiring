@@ -1,10 +1,10 @@
-import TileItem from './TileItem'
+import TileListItem from './TileListItem'
 
 const TileList = () => {
   return (
     <>
       <div>
-        <TileItem />
+        <TileListItem />
       </div>
     </>
   )
