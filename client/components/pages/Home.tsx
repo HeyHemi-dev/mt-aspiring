@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import TileList from '../TileList'
 import * as api from '../../api/apiClient'
 
-const Home = () => {
+function Home() {
   const { data, isPending, isError, isSuccess } = useQuery({
     queryKey: ['tiles'],
     queryFn: () => api.getTiles(),

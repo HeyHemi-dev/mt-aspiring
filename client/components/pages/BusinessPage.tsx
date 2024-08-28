@@ -1,4 +1,4 @@
-const BusinessPage = () => {
+function BusinessPage() {
   return (
     <>
       <div>Business Page</div>

@@ -1,4 +1,4 @@
-const UserProfile = () => {
+function UserProfile() {
   return (
     <>
       <div>User Profile</div>
