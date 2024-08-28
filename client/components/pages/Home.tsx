@@ -14,7 +14,7 @@ const Home = () => {
   let feedOutlet = <></>
   isPending && (feedOutlet = <p>Loading...</p>)
   isError && (feedOutlet = <p>Error Loading Tiles</p>)
-  isSuccess && (feedOutlet = <TileList />)
+  isSuccess && (feedOutlet = <TileList tiles={data} />)
 
   console.log(data)
 
