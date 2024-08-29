@@ -20,8 +20,7 @@ function Home() {
 
   return (
     <>
-      <div>Home Feed</div>
-      {outlet}
+      <section className="grid grid-cols-subgrid"> {outlet}</section>
     </>
   )
 }
