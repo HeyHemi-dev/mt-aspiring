@@ -4,7 +4,7 @@ import TileListItem from './TileListItem'
 function TileList({ tiles }: { tiles: Tile[] }) {
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-4">
+      <div className="tile-list">
         {tiles.map((tile, index) => (
           <TileListItem key={index} tile={tile} />
         ))}

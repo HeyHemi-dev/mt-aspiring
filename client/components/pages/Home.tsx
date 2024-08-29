@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <>
-      <section className="grid grid-cols-subgrid"> {outlet}</section>
+      <section className="site-padding section-padding">{outlet}</section>
     </>
   )
 }
