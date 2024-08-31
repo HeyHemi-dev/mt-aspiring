@@ -10,7 +10,7 @@ function App() {
         <header className="header rounded-t-3xl border-b bg-background text-foreground">
           <Header />
         </header>
-        <main className="content rounded-b-3xl bg-background text-foreground">
+        <main className="content rounded-b-3xl bg-secondary text-foreground">
           <Outlet />
         </main>
         <footer className="footer">

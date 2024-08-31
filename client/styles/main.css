@@ -133,6 +133,7 @@ section.section-padding {
 }
 
 .tile-list-item {
+  background: unset;
   border: unset;
 }
 
