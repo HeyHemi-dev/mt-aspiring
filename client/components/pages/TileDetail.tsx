@@ -23,8 +23,9 @@ function TileDetail() {
 
   return (
     <>
-      <div></div>
-      {outlet}
+      <section className="site-padding section-padding">
+        <div className="grid place-items-center">{outlet}</div>
+      </section>
     </>
   )
 }

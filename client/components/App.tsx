@@ -7,7 +7,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="page">
-        <header className="header rounded-t-3xl bg-background text-foreground">
+        <header className="header rounded-t-3xl border-b bg-background text-foreground">
           <Header />
         </header>
         <main className="content rounded-b-3xl bg-background text-foreground">

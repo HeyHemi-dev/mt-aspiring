@@ -1,7 +1,9 @@
 function Footer() {
   return (
     <>
-      <div>Footer</div>
+      <section className="site-padding pt-8">
+        <div>Footer</div>
+      </section>
     </>
   )
 }

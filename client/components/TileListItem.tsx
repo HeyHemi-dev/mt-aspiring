@@ -1,31 +1,23 @@
 import { Tile } from 'model/tiles'
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import { Link } from 'react-router-dom'
 
 function TileListItem({ tile }: { tile: Tile }) {
+  const tileLink = `tiles/${tile.id}`
   return (
-    <Card>
-      <div className="tile-item-layout grid grid-rows-[auto_1fr]">
-        <Link to={`tiles/${tile.id}`}>
-          <AspectRatio ratio={1 / 1} className="bg-muted">
-            <img
-              src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
-              alt={tile.title}
-              className="h-full w-full rounded-md object-cover"
-            />
-          </AspectRatio>
-        </Link>
-        <CardHeader>
+    <Card className="tile-list-item grid grid-rows-[minmax(0,1fr)_auto]">
+      <Link to={tileLink} className="flex">
+        <img
+          src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+          alt={tile.title}
+          className="h-full w-full rounded-lg object-cover"
+        />
+      </Link>
+      <CardContent className="p-2">
+        <Link to={tileLink}>
           <CardTitle>{tile.title}</CardTitle>
-          <CardDescription>{tile.description}</CardDescription>
-        </CardHeader>
-      </div>
+        </Link>
+      </CardContent>
     </Card>
   )
 }
