@@ -64,7 +64,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-accent-foreground p-2 text-background;
+    @apply bg-accent-foreground text-background;
   }
 }
 
@@ -78,6 +78,7 @@
 .page {
   min-height: 100svh;
   display: grid;
+  padding-top: var(--mini-gap);
   grid-template-rows: auto 1fr auto;
 }
 
@@ -116,10 +117,16 @@ section.section-padding {
   padding-block: var(--mini-gap);
 }
 
-/* TILES --- TILES --- TILES --- */
+/* TILE LIST --- TILE LIST --- TILE LIST --- */
 
-.tile-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: var(--content-gap);
+#tile-list > div:nth-child(2n) {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+#tile-list > div:nth-child(3n) {
+  grid-row: span 2;
+}
+#tile-list > div:nth-child(5n) {
+  grid-column: span 2;
+  grid-row: span 3;
 }
