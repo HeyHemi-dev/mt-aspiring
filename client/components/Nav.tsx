@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator'
 function Nav() {
   return (
     <div className="flex gap-4">
-      <Link to="/">Add Tile</Link>
+      <Link to="/tiles/create">Add Tile</Link>
       <Sheet>
         <SheetTrigger>Profile</SheetTrigger>
         <SheetContent>
@@ -24,7 +24,7 @@ function Nav() {
               </SheetDescription>
             </SheetHeader>
             <Separator />
-            <Link to="/">Settings</Link>
+            <Link to="/username/settings">Settings</Link>
             <Link to="/">Log out</Link>
           </div>
         </SheetContent>

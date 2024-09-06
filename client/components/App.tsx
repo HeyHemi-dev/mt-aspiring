@@ -6,11 +6,11 @@ import Footer from './Footer'
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="page bg-primary text-foreground">
-        <header className="header rounded-t-3xl border-b bg-muted text-foreground">
+      <div className="page bg-muted p-2 text-foreground">
+        <header className="header">
           <Header />
         </header>
-        <main className="content rounded-b-3xl bg-background text-foreground">
+        <main className="content rounded-md bg-background text-foreground drop-shadow-md">
           <Outlet />
         </main>
         <footer className="footer">
