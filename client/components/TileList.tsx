@@ -5,9 +5,9 @@ import useGridLayout from '@/hooks/useGridLayout'
 
 function TileList({ tiles }: { tiles: Tile[] }) {
   const gridElement = useRef<HTMLDivElement>(null)
-  const gridCellMin: number = 192
-  const gridGap: number = 24
-  useGridLayout(gridElement, gridCellMin, gridGap)
+  const gridCellMinPx: number = 96
+  const gridGapPx: number = 24
+  useGridLayout(gridElement, gridCellMinPx, gridGapPx)
 
   return (
     <>

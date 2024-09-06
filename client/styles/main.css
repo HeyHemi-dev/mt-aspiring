@@ -22,7 +22,7 @@
   --border: 290 30% 82%;
   --input: 290 30% 50%;
   --ring: 290 100% 85.9%;
-  --radius: 1rem;
+  --radius: 0.8rem;
   --chart-1: 12 76% 61%;
   --chart-2: 173 58% 39%;
   --chart-3: 197 37% 24%;
@@ -118,16 +118,22 @@ section.section-padding {
 
 /* TILE LIST --- TILE LIST --- TILE LIST --- */
 
-#tile-list > div:nth-child(5n) {
+#tile-list > div {
+  grid-column: span 2;
   grid-row: span 2;
+}
+
+#tile-list > div:nth-child(5n) {
+  grid-column: span 3;
+  grid-row: span 3;
 }
 #tile-list > div:nth-child(7n - 5) {
+  grid-column: span 3;
   grid-row: span 2;
-  grid-column: span 2;
 }
 #tile-list > div:nth-child(13n) {
-  grid-column: span 2;
-  grid-row: span 3;
+  grid-column: span 3;
+  grid-row: span 4;
 }
 
 .tile-list-item {
