@@ -1,4 +1,4 @@
-function BusinessPage() {
+function SupplierProfile() {
   return (
     <>
       <div>Business Page</div>
@@ -6,4 +6,4 @@ function BusinessPage() {
   )
 }
 
-export default BusinessPage
+export default SupplierProfile
