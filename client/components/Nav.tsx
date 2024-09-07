@@ -24,6 +24,7 @@ function Nav() {
               </SheetDescription>
             </SheetHeader>
             <Separator />
+            <Link to="/username/">Saved Tiles</Link>
             <Link to="/username/settings">Settings</Link>
             <Link to="/">Log out</Link>
           </div>
