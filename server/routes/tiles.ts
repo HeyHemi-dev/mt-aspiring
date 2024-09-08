@@ -5,12 +5,32 @@ import { SavedTileData } from 'model/tiles.ts'
 
 const router = express.Router()
 
+//Test Route
+router.get('/test', async (req, res) => {
+  try {
+    let records
+
+    const data = await db.getAllSavedTileRecords()
+    data ? (records = camelcaseKeys(data)) : (records = [])
+
+    res.json(records)
+  } catch {
+    res.sendStatus(500)
+  }
+})
+
 //Get home feed tiles [PUBLIC]
 router.get('/', async (req, res) => {
   try {
     let tiles
+    let data
+    const userId = 2
 
-    const data = await db.getAllPublicTiles()
+    if (userId) {
+      data = await db.getAllPublicTilesWithSavedStatus(userId)
+    } else {
+      data = await db.getAllPublicTiles()
+    }
     data ? (tiles = camelcaseKeys(data)) : (tiles = [])
 
     res.json(tiles)
