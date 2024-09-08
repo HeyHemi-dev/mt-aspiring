@@ -27,12 +27,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 5,
-      tile_id: 9,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 1,
       tile_id: 18,
       is_saved: 1,
@@ -65,12 +59,6 @@ export async function seed(knex) {
     {
       saved_by: 1,
       tile_id: 6,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 2,
-      tile_id: 28,
       is_saved: 1,
       updated_at: 1,
     },
@@ -113,12 +101,6 @@ export async function seed(knex) {
     {
       saved_by: 4,
       tile_id: 14,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 5,
-      tile_id: 26,
       is_saved: 1,
       updated_at: 1,
     },
@@ -171,12 +153,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 4,
-      tile_id: 20,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 5,
       tile_id: 13,
       is_saved: 1,
@@ -197,18 +173,6 @@ export async function seed(knex) {
     {
       saved_by: 3,
       tile_id: 49,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 4,
-      tile_id: 25,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 5,
-      tile_id: 10,
       is_saved: 1,
       updated_at: 1,
     },
@@ -255,12 +219,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 3,
-      tile_id: 31,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 4,
       tile_id: 40,
       is_saved: 1,
@@ -269,12 +227,6 @@ export async function seed(knex) {
     {
       saved_by: 5,
       tile_id: 22,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 1,
-      tile_id: 38,
       is_saved: 1,
       updated_at: 1,
     },
@@ -309,12 +261,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 2,
-      tile_id: 6,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 3,
       tile_id: 18,
       is_saved: 1,
@@ -345,12 +291,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 3,
-      tile_id: 12,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 4,
       tile_id: 9,
       is_saved: 1,
@@ -359,12 +299,6 @@ export async function seed(knex) {
     {
       saved_by: 5,
       tile_id: 43,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 1,
-      tile_id: 17,
       is_saved: 1,
       updated_at: 1,
     },
@@ -407,12 +341,6 @@ export async function seed(knex) {
     {
       saved_by: 3,
       tile_id: 4,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 4,
-      tile_id: 13,
       is_saved: 1,
       updated_at: 1,
     },
@@ -489,12 +417,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 2,
-      tile_id: 22,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 3,
       tile_id: 15,
       is_saved: 1,
@@ -557,12 +479,6 @@ export async function seed(knex) {
     {
       saved_by: 3,
       tile_id: 5,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 4,
-      tile_id: 29,
       is_saved: 1,
       updated_at: 1,
     },
@@ -633,12 +549,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 1,
-      tile_id: 17,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 2,
       tile_id: 10,
       is_saved: 1,
@@ -647,12 +557,6 @@ export async function seed(knex) {
     {
       saved_by: 3,
       tile_id: 24,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 4,
-      tile_id: 14,
       is_saved: 1,
       updated_at: 1,
     },
@@ -687,26 +591,8 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 5,
-      tile_id: 13,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 1,
-      tile_id: 21,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 2,
       tile_id: 34,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 3,
-      tile_id: 37,
       is_saved: 1,
       updated_at: 1,
     },
@@ -759,12 +645,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 2,
-      tile_id: 8,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 3,
       tile_id: 12,
       is_saved: 1,
@@ -813,12 +693,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 1,
-      tile_id: 11,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 2,
       tile_id: 31,
       is_saved: 1,
@@ -849,26 +723,8 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 2,
-      tile_id: 25,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 3,
-      tile_id: 14,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 4,
       tile_id: 23,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 5,
-      tile_id: 1,
       is_saved: 1,
       updated_at: 1,
     },
@@ -927,12 +783,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 5,
-      tile_id: 19,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 1,
       tile_id: 30,
       is_saved: 1,
@@ -975,12 +825,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 3,
-      tile_id: 37,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 4,
       tile_id: 6,
       is_saved: 1,
@@ -993,12 +837,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 1,
-      tile_id: 35,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 2,
       tile_id: 21,
       is_saved: 1,
@@ -1007,18 +845,6 @@ export async function seed(knex) {
     {
       saved_by: 3,
       tile_id: 46,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 4,
-      tile_id: 20,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 5,
-      tile_id: 26,
       is_saved: 1,
       updated_at: 1,
     },
@@ -1059,12 +885,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 2,
-      tile_id: 8,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 3,
       tile_id: 14,
       is_saved: 1,
@@ -1085,12 +905,6 @@ export async function seed(knex) {
     {
       saved_by: 1,
       tile_id: 45,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 2,
-      tile_id: 16,
       is_saved: 1,
       updated_at: 1,
     },
