@@ -15,6 +15,21 @@ export function getAllPublicTiles() {
   return connection('tiles').where(TilesTable.isPrivate, 0).select()
 }
 
+export function getAllPublicTilesWithSavedStatus(userId: number) {
+  return connection('tiles')
+    .leftJoin('user_saved_tiles', function () {
+      this.on(
+        `tiles.${TilesTable.id}`,
+        `user_saved_tiles.${UserSavedTilesTable.tileId}`,
+      ).andOn(
+        `user_saved_tiles.${UserSavedTilesTable.savedBy}`,
+        userId.toString(),
+      )
+    })
+    .where('tiles.is_private', 0)
+    .select('tiles.*', `user_saved_tiles.${UserSavedTilesTable.isSaved}`)
+}
+
 export function getTileById(tileId: number) {
   return connection('tiles').where(TilesTable.id, tileId).select().first()
 }
@@ -52,7 +67,6 @@ export function findSavedTileRecord(tileId: number, userId: number) {
 
 export function updateSavedTileRecord(data: SavedTileData) {
   return connection('user_saved_tiles')
-    .connection('user_saved_tiles')
     .where(UserSavedTilesTable.savedBy, data.savedBy)
     .where(UserSavedTilesTable.tileId, data.tileId)
     .update({
@@ -71,4 +85,8 @@ export function createSavedTileRecord(data: SavedTileData) {
       [UserSavedTilesTable.updatedAt]: data.updatedAt,
     })
     .returning(UserSavedTilesTable.id)
+}
+
+export function getAllSavedTileRecords() {
+  return connection('user_saved_tiles').select()
 }
