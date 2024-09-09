@@ -3,7 +3,7 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import { Link } from 'react-router-dom'
 
 function TileListItem({ tile }: { tile: Tile }) {
-  const tileLink = `tiles/${tile.id}`
+  const tileLink = `/tiles/${tile.id}`
   return (
     <Card className="tile-list-item grid grid-rows-subgrid overflow-hidden">
       <Link to={tileLink} className="col-span-full row-span-full flex">
