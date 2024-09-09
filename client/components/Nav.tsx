@@ -8,26 +8,50 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
+import useCurrentUser from '@/hooks/useCurrentUser'
 
 function Nav() {
+  const userQuery = useCurrentUser()
+
+  let user
+  const sheetContent = {
+    title: '',
+    description: '',
+    links: [{ url: '/', text: '' }],
+  }
+
+  userQuery.isPending && (sheetContent.title = 'Loading...')
+  userQuery.isError && (sheetContent.title = 'Error loading profile')
+  if (userQuery.data) {
+    user = userQuery.data
+    // console.log('user', user)
+    sheetContent.title = `Hello ${user.name}`
+    sheetContent.description = 'This is a description for the side sheet'
+    sheetContent.links = [
+      { url: `/${user.username}/`, text: 'Saved Tiles' },
+      { url: `/${user.username}/settings`, text: 'Settings' },
+      { url: `/`, text: 'Log out' },
+    ]
+  }
+
   return (
     <div className="flex gap-4">
       <Link to="/tiles/create">Add Tile</Link>
       <Sheet>
         <SheetTrigger>Profile</SheetTrigger>
-        <SheetContent>
-          <div className="grid gap-4">
-            <SheetHeader>
-              <SheetTitle>Hello username</SheetTitle>
-              <SheetDescription>
-                This is a description for the side sheet
-              </SheetDescription>
-            </SheetHeader>
-            <Separator />
-            <Link to="/username/">Saved Tiles</Link>
-            <Link to="/username/settings">Settings</Link>
-            <Link to="/">Log out</Link>
-          </div>
+        <SheetContent className="grid content-start gap-4">
+          <SheetHeader>
+            <SheetTitle>{sheetContent.title}</SheetTitle>
+            <SheetDescription>{sheetContent.description}</SheetDescription>
+          </SheetHeader>
+          <Separator />
+          {sheetContent.links.map((link, index) => {
+            return (
+              <Link key={index} to={link.url}>
+                {link.text}
+              </Link>
+            )
+          })}
         </SheetContent>
       </Sheet>
     </div>
