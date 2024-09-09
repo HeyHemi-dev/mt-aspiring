@@ -32,8 +32,8 @@ export async function getSavedTiles(userId: string): Promise<Tile[]> {
 }
 
 //Get user details
-export async function getUser(userId: string): Promise<User> {
-  const slug = `/users/${userId}`
+export async function getUser(userAuth: string): Promise<User> {
+  const slug = `/users/${userAuth}`
   const res = await request.get(apiPath + slug)
   return res.body
 }

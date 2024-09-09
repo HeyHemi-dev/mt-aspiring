@@ -101,6 +101,13 @@ export function getUserById(userId: number) {
     .first()
 }
 
+export function getUserByKey(userAuth: string) {
+  return connection(UsersTable.table)
+    .where(UsersTable.userAuth, userAuth)
+    .select()
+    .first()
+}
+
 export function findUserName(username: string) {
   return connection(UsersTable.table)
     .where(UsersTable.username, username)

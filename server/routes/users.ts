@@ -6,12 +6,12 @@ import { User } from 'model/users.ts'
 const router = express.Router()
 
 //Get a user
-router.get('/:userId', async (req, res) => {
+router.get('/:userAuth', async (req, res) => {
   try {
     let user = {} as User
-    const userId = req.params.userId
+    const userAuth = req.params.userAuth
 
-    const data = await db.getUserById(Number(userId))
+    const data = await db.getUserByKey(userAuth)
     data && (user = camelcaseKeys(data))
 
     res.json(user)
