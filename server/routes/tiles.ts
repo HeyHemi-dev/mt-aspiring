@@ -1,7 +1,7 @@
 import express from 'express'
 import * as db from '../db/index.ts'
 import camelcaseKeys from 'camelcase-keys'
-import { SavedTileData } from 'model/tiles.ts'
+import { SavedTileData, Tile } from 'model/tiles.ts'
 
 const router = express.Router()
 
@@ -22,16 +22,13 @@ router.get('/test', async (req, res) => {
 //Get home feed tiles [PUBLIC]
 router.get('/', async (req, res) => {
   try {
-    let tiles
-    let data
-    const userId = 2
+    let tiles = [] as Tile[]
+    let savedBy = null
+    const userId = 10 // Replaced with auth
 
-    if (userId) {
-      data = await db.getAllPublicTilesWithSavedStatus(userId)
-    } else {
-      data = await db.getAllPublicTiles()
-    }
-    data ? (tiles = camelcaseKeys(data)) : (tiles = [])
+    userId && (savedBy = userId)
+    const data = await db.getPublicTiles(savedBy)
+    data && (tiles = camelcaseKeys(data))
 
     res.json(tiles)
   } catch {
@@ -42,11 +39,14 @@ router.get('/', async (req, res) => {
 //Get a tile [PUBLIC]
 router.get('/:id', async (req, res) => {
   try {
+    let tile = {} as Tile
+    let savedBy = null
     const tileId = req.params.id
-    let tile
+    const userId = 1 // Replaced with auth
 
-    const data = await db.getTileById(Number(tileId))
-    data ? (tile = camelcaseKeys(data)) : (tile = {})
+    userId && (savedBy = userId)
+    const data = await db.getTileById(Number(tileId), savedBy)
+    data && (tile = camelcaseKeys(data))
 
     res.json(tile)
   } catch {
@@ -57,11 +57,11 @@ router.get('/:id', async (req, res) => {
 //Get user saved tiles
 router.get('/saved/:userId', async (req, res) => {
   try {
+    let tiles = [] as Tile[]
     const userId = req.params.userId
-    let tiles
 
     const data = await db.getUserSavedTiles(Number(userId))
-    data ? (tiles = camelcaseKeys(data)) : (tiles = [])
+    data && (tiles = camelcaseKeys(data))
 
     res.json(tiles)
   } catch {
@@ -80,6 +80,9 @@ router.put('/saved', async (req, res) => {
       Number(saveRequest.savedBy),
     )
 
+    // console.log('saveRequest', saveRequest)
+    // console.log('existingRecord', existingRecord)
+
     // If record exists, check the timestamp and update is_saved if needed
     if (existingRecord) {
       existingRecord = camelcaseKeys(existingRecord)
@@ -96,7 +99,7 @@ router.put('/saved', async (req, res) => {
       res.status(201).json(newRecord)
     }
   } catch (error) {
-    console.error(error)
+    // console.error(error)
     res.sendStatus(500)
   }
 })
