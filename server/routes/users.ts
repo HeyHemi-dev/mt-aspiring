@@ -11,7 +11,7 @@ router.get('/:userAuth', async (req, res) => {
     let user = {} as User
     const userAuth = req.params.userAuth
 
-    const data = await db.getUserByKey(userAuth)
+    const data = await db.getUserByAuthRef(userAuth)
     data && (user = camelcaseKeys(data))
 
     res.json(user)

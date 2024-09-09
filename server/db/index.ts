@@ -101,7 +101,7 @@ export function getUserById(userId: number) {
     .first()
 }
 
-export function getUserByKey(userAuth: string) {
+export function getUserByAuthRef(userAuth: string) {
   return connection(UsersTable.table)
     .where(UsersTable.userAuth, userAuth)
     .select()
