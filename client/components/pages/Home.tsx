@@ -16,7 +16,7 @@ function Home() {
   isError && (outlet = <p>Error Loading Tiles</p>)
   isSuccess && (outlet = <TileList tiles={data} />)
 
-  console.log(data)
+  //console.log(data)
 
   return (
     <>
