@@ -26,7 +26,7 @@ export async function getTileById(id: string | undefined): Promise<Tile> {
 
 //Get user saved tiles
 export async function getSavedTiles(userId: string): Promise<Tile[]> {
-  const slug = `/tiles/${userId}/saved`
+  const slug = `/tiles/saved/${userId}`
   const res = await request.get(apiPath + slug)
   return res.body
 }
