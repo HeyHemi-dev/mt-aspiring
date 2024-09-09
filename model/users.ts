@@ -2,17 +2,19 @@ interface UserData {
   userAuth: string
   username: string
   name: string
-  userType: string
+  userType: 'personal' | 'business'
 }
 
 export interface User extends UserData {
-  id: string
+  id: number
 }
 
 export const UsersTable = {
-  id: 'id',
-  userAuth: 'user_auth',
-  username: 'username',
-  name: 'name',
-  userType: 'user_type',
+  table: 'users',
+  all: 'users.*',
+  id: 'users.id',
+  userAuth: 'users.user_auth',
+  username: 'users.username',
+  name: 'users.name',
+  userType: 'users.user_type',
 }
