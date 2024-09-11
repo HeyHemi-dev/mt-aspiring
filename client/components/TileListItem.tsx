@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 function TileListItem({ tile }: { tile: Tile }) {
   const tileLink = `/tiles/${tile.id}`
+  const titleWithSave = tile.isSaved ? `* ${tile.title}` : `${tile.title}`
+
   return (
     <Card className="tile-list-item grid grid-rows-subgrid overflow-hidden">
       <Link to={tileLink} className="col-span-full row-span-full flex">
@@ -14,7 +16,7 @@ function TileListItem({ tile }: { tile: Tile }) {
         />
       </Link>
       <CardContent className="pointer-events-none col-span-full row-span-full flex items-end p-2">
-        <CardTitle>{tile.title}</CardTitle>
+        <CardTitle>{titleWithSave}</CardTitle>
       </CardContent>
     </Card>
   )

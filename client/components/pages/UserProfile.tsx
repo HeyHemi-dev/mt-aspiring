@@ -4,15 +4,19 @@ import * as api from '../../api/apiClient'
 import useCurrentUser from '@/hooks/useCurrentUser'
 
 function UserProfile() {
+  // Update the query to use a custom hook instead.
+  // Custom hook needs to only show saved tiles only (query param?)
+  // const { data, isPending, isError, isSuccess } = useTilesList()
+
   const userQuery = useCurrentUser()
 
   const { data, isPending, isError, isSuccess } = useQuery({
     queryKey: ['tiles', userQuery.data?.id],
-    queryFn: () => api.getSavedTiles(userQuery.data?.id),
+    queryFn: () => api.getSavedTiles(userQuery.data),
     staleTime: Infinity,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    enabled: !!userQuery.data?.id,
+    enabled: !!userQuery.data,
   })
 
   let outlet = <></>

@@ -1,15 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
+// import * as api from '../../api/apiClient'
+import useTilesList from '@/hooks/useTilesList'
 import TileList from '../TileList'
-import * as api from '../../api/apiClient'
 
 function Home() {
-  const { data, isPending, isError, isSuccess } = useQuery({
-    queryKey: ['tiles'],
-    queryFn: () => api.getTiles(),
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
+  const { data, isPending, isError, isSuccess } = useTilesList()
 
   let outlet = <></>
   isPending && (outlet = <p>Loading...</p>)

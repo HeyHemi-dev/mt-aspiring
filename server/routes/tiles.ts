@@ -5,28 +5,13 @@ import { SavedTileData, Tile } from 'model/tiles.ts'
 
 const router = express.Router()
 
-//Test Route
-router.get('/test', async (req, res) => {
-  try {
-    let records
-
-    const data = await db.getAllSavedTileRecords()
-    data ? (records = camelcaseKeys(data)) : (records = [])
-
-    res.json(records)
-  } catch {
-    res.sendStatus(500)
-  }
-})
-
-//Get home feed tiles [PUBLIC]
+//List tiles [PUBLIC]
 router.get('/', async (req, res) => {
   try {
     let tiles = [] as Tile[]
-    let savedBy = null
-    const userId = 10 // Replaced with auth
+    const userId = Number(req.query.currentUser)
 
-    userId && (savedBy = userId)
+    const savedBy = userId ? userId : null
     const data = await db.getPublicTiles(savedBy)
     data && (tiles = camelcaseKeys(data))
 
@@ -37,14 +22,13 @@ router.get('/', async (req, res) => {
 })
 
 //Get a tile [PUBLIC]
-router.get('/:id', async (req, res) => {
+router.get('/:tileId', async (req, res) => {
   try {
     let tile = {} as Tile
-    let savedBy = null
-    const tileId = req.params.id
-    const userId = 1 // Replaced with auth
+    const tileId = req.params.tileId
+    const userId = Number(req.query.currentUser)
 
-    userId && (savedBy = userId)
+    const savedBy = userId ? userId : null
     const data = await db.getTileById(Number(tileId), savedBy)
     data && (tile = camelcaseKeys(data))
 
@@ -83,14 +67,16 @@ router.put('/saved', async (req, res) => {
     // console.log('saveRequest', saveRequest)
     // console.log('existingRecord', existingRecord)
 
+    Number(saveRequest.updatedAt)
+
     // If record exists, check the timestamp and update is_saved if needed
     if (existingRecord) {
       existingRecord = camelcaseKeys(existingRecord)
       if (saveRequest.updatedAt > existingRecord.updatedAt) {
         const updatedRecord = await db.updateSavedTileRecord(saveRequest)
-        res.status(204).json(updatedRecord)
+        res.status(200).json(updatedRecord)
       } else {
-        res.sendStatus(204)
+        res.sendStatus(200)
       }
     }
     // Else create a new record

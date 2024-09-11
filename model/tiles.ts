@@ -4,13 +4,14 @@ export interface TileData {
   description?: string | null
   createdAt: string //timestamp
   createdBy: string //uuid
-  isPrivate?: 1 | 0 | null
+  isPrivate?: 1 | 0
   locationId?: string | number | null
 }
 
 export interface Tile extends TileData {
   id: number
   isSaved?: 1 | 0 | null
+  savedBy?: number | null
 }
 
 export const TilesTable = {
@@ -30,7 +31,7 @@ export const TilesTable = {
 export interface SavedTileData {
   savedBy: number //user id
   tileId: number //tile id
-  isSaved: 1 | 0 | null
+  isSaved: 1 | 0
   updatedAt: number //unix date
 }
 

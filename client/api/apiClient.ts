@@ -1,33 +1,48 @@
 import request from 'superagent'
-import { Tile } from 'model/tiles'
-import { User } from 'model/users'
+import { SavedTileData, Tile } from 'model/tiles'
+import { User, UserData } from 'model/users'
 
 const apiPath = '/api/v1'
 
-//Get home feed tiles [PUBLIC]
-export async function getTiles(): Promise<Tile[]> {
-  const slug = `/tiles`
+//List tiles [PUBLIC]
+export async function getTiles(currentUser?: User): Promise<Tile[]> {
+  let slug = `/tiles`
+  //Add query params
+  slug = currentUser ? `${slug}?currentUser=${currentUser.id}` : slug
+
   const res = await request.get(apiPath + slug)
   return res.body
 }
 
 //Get a tile [PUBLIC]
-export async function getTileById(id: string | undefined): Promise<Tile> {
-  let tileId = ''
-  if (id) {
-    tileId = id
-    const slug = `/tiles/${tileId}`
-    const res = await request.get(apiPath + slug)
-    return res.body
-  } else {
-    throw new Error()
-  }
+export async function getTileById(
+  tileId: number,
+  currentUser?: User,
+): Promise<Tile> {
+  let slug = `/tiles/${tileId}`
+  //Add query params
+  slug = currentUser ? `${slug}?currentUser=${currentUser.id}` : slug
+
+  const res = await request.get(apiPath + slug)
+  return res.body
 }
 
 //Get user saved tiles
-export async function getSavedTiles(userId: string): Promise<Tile[]> {
-  const slug = `/tiles/saved/${userId}`
+export async function getSavedTiles(user: User): Promise<Tile[]> {
+  const slug = `/tiles/saved/${user.id}`
   const res = await request.get(apiPath + slug)
+  return res.body
+}
+
+//Save/unsave a tile
+export async function updateTileSave(saveData: SavedTileData) {
+  console.log('Sending data to server:', saveData) // Log the data you're sending
+  const slug = `/tiles/saved`
+  const res = await request
+    .put(apiPath + slug)
+    .send(JSON.stringify(saveData))
+    .set('Content-Type', 'application/json')
+  console.log('Response from server:', res.body) // Log the server response
   return res.body
 }
 
@@ -42,5 +57,15 @@ export async function getUser(userAuth: string): Promise<User> {
 export async function getUsersByUsername(username: string): Promise<User[]> {
   const slug = `/users/search/${username}`
   const res = await request.get(apiPath + slug)
+  return res.body
+}
+
+// Update user details
+export async function updateUser(userAuth: string, userData: UserData) {
+  const slug = `/users/${userAuth}`
+  const res = await request
+    .patch(apiPath + slug)
+    .send(JSON.stringify(userData))
+    .set('Content-Type', 'application/json')
   return res.body
 }

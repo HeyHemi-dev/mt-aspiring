@@ -1,12 +1,7 @@
 import knexFile from './knexfile.js'
 import knex from 'knex'
-import {
-  SavedTileData,
-  UserSavedTilesTable,
-  TilesTable,
-  Tile,
-} from 'model/tiles.ts'
-import { UsersTable } from 'model/users.ts'
+import { SavedTileData, UserSavedTilesTable, TilesTable } from 'model/tiles.ts'
+import { UserData, UsersTable } from 'model/users.ts'
 
 type Environment = 'production' | 'test' | 'development'
 
@@ -15,6 +10,8 @@ const config = knexFile[environment]
 export const connection = knex(config)
 
 //Database Query Functions
+
+// Tiles Table Queries --- Tiles Table Queries --- Tiles Table Queries
 
 export function getPublicTiles(savedBy: number | null) {
   return connection(TilesTable.table)
@@ -94,6 +91,8 @@ export function getAllSavedTileRecords() {
   return connection(UserSavedTilesTable.table).select()
 }
 
+// Users Table Queries --- Users Table Queries --- Users Table Queries
+
 export function getUserById(userId: number) {
   return connection(UsersTable.table)
     .where(UsersTable.id, userId)
@@ -112,4 +111,17 @@ export function findUserName(username: string) {
   return connection(UsersTable.table)
     .where(UsersTable.username, username)
     .select()
+}
+
+export function updateUserByAuthRef(userAuth: string, userData: UserData) {
+  console.log('dbFn', userAuth, userData)
+  const data = connection(UsersTable.table)
+    .where(UsersTable.userAuth, userAuth)
+    .update({
+      username: userData.username,
+      name: userData.name,
+      user_type: userData.userType,
+    })
+    .returning(UsersTable.id)
+  return data
 }

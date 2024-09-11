@@ -1,7 +1,7 @@
 import express from 'express'
 import * as db from '../db/index.ts'
 import camelcaseKeys from 'camelcase-keys'
-import { User } from 'model/users.ts'
+import { User, UserData } from 'model/users.ts'
 
 const router = express.Router()
 
@@ -30,6 +30,20 @@ router.get('/search/:username', async (req, res) => {
     data && (users = camelcaseKeys(data))
 
     res.json(users)
+  } catch {
+    res.sendStatus(500)
+  }
+})
+
+//Update a user
+router.patch('/:userAuth', async (req, res) => {
+  try {
+    const userAuth = req.params.userAuth
+    const userData = req.body as UserData
+
+    await db.updateUserByAuthRef(userAuth, userData)
+
+    res.sendStatus(200)
   } catch {
     res.sendStatus(500)
   }

@@ -1,11 +1,11 @@
-interface UserData {
-  userAuth: string
+export interface UserData {
   username: string
   name: string
   userType: 'personal' | 'business'
 }
 
 export interface User extends UserData {
+  userAuth: string
   id: number
 }
 
