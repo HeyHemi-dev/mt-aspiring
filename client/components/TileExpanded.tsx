@@ -8,7 +8,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { Button } from './ui/button'
+import SaveButton from './SaveButton'
+import useCurrentUser from '@/hooks/useCurrentUser'
 
 function TileExpanded({ tile }: { tile: Tile }) {
   const tileSuppliers = [
@@ -37,6 +38,9 @@ function TileExpanded({ tile }: { tile: Tile }) {
       role: 'Dinnerware',
     },
   ]
+
+  const { data } = useCurrentUser()
+  const user = data ? data : { id: null }
 
   return (
     <Card className="w-full max-w-[60rem]">
@@ -70,7 +74,14 @@ function TileExpanded({ tile }: { tile: Tile }) {
             </div>
           </CardContent>
           <CardFooter className="flex flex-row-reverse">
-            <Button>Save</Button>
+            <SaveButton
+              saveData={{
+                tileId: tile.id,
+                isSaved: tile.isSaved ? tile.isSaved : null,
+                updatedAt: 0,
+                savedBy: user.id,
+              }}
+            />
           </CardFooter>
         </div>
       </div>
