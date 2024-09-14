@@ -7,7 +7,7 @@ function Header() {
   return (
     <div className="site-padding grid grid-cols-[auto_1fr_auto_auto] place-items-center gap-4">
       <Brand />
-      <SearchBar />
+      <div></div>
       <div className="justify-self-end">
         <Nav />
       </div>
