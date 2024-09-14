@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { ThemeProvider } from './ThemeProvider'
+import { Toaster } from './ui/toaster'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -17,6 +18,7 @@ function App() {
           <Footer />
         </footer>
       </div>
+      <Toaster />
     </ThemeProvider>
   )
 }
