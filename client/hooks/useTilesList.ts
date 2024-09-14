@@ -1,6 +1,6 @@
 import * as api from '../api/apiClient'
 import { useQuery } from '@tanstack/react-query'
-import useCurrentUser from './useCurrentUser'
+import useCurrentUser from './use-current-user'
 
 function useTilesList() {
   const userQuery = useCurrentUser()

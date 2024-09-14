@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import TileList from '../TileList'
 import * as api from '../../api/apiClient'
-import useCurrentUser from '@/hooks/useCurrentUser'
+import useCurrentUser from '@/hooks/use-current-user'
 
 function UserProfile() {
   // Update the query to use a custom hook instead.

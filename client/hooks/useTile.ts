@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import useCurrentUser from './useCurrentUser'
+import useCurrentUser from './use-current-user'
 import * as api from '../api/apiClient'
 // import { Tile } from 'model/tiles'
 
