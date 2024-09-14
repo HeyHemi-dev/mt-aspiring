@@ -73,7 +73,7 @@ export function updateSavedTileRecord(data: SavedTileData) {
       is_saved: data.isSaved,
       updated_at: data.updatedAt,
     })
-    .returning(UserSavedTilesTable.id)
+    .returning('*')
 }
 
 export function createSavedTileRecord(data: SavedTileData) {
@@ -84,7 +84,7 @@ export function createSavedTileRecord(data: SavedTileData) {
       is_saved: data.isSaved,
       updated_at: data.updatedAt,
     })
-    .returning(UserSavedTilesTable.id)
+    .returning('*')
 }
 
 export function getAllSavedTileRecords() {

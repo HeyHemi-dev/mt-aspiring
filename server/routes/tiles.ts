@@ -73,16 +73,18 @@ router.put('/saved', async (req, res) => {
     if (existingRecord) {
       existingRecord = camelcaseKeys(existingRecord)
       if (saveRequest.updatedAt > existingRecord.updatedAt) {
-        const updatedRecord = await db.updateSavedTileRecord(saveRequest)
-        res.status(200).json(updatedRecord)
+        let updatedRecords = await db.updateSavedTileRecord(saveRequest)
+        updatedRecords = camelcaseKeys(updatedRecords)
+        res.status(200).json(updatedRecords[0])
       } else {
-        res.sendStatus(200)
+        res.status(200).json(existingRecord)
       }
     }
     // Else create a new record
     else {
-      const newRecord = await db.createSavedTileRecord(saveRequest)
-      res.status(201).json(newRecord)
+      let newRecords = await db.createSavedTileRecord(saveRequest)
+      newRecords = camelcaseKeys(newRecords)
+      res.status(201).json(newRecords[0])
     }
   } catch (error) {
     // console.error(error)
