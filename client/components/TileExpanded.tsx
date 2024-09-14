@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import SaveButton from './SaveButton'
-import useCurrentUser from '@/hooks/useCurrentUser'
+import useCurrentUser from '@/hooks/use-current-user'
 
 function TileExpanded({ tile }: { tile: Tile }) {
   const tileSuppliers = [
@@ -40,7 +40,7 @@ function TileExpanded({ tile }: { tile: Tile }) {
   ]
 
   const { data } = useCurrentUser()
-  const user = data ? data : { id: null }
+  const user = data ? data : { id: undefined }
 
   return (
     <Card className="w-full max-w-[60rem]">
@@ -77,7 +77,7 @@ function TileExpanded({ tile }: { tile: Tile }) {
             <SaveButton
               saveData={{
                 tileId: tile.id,
-                isSaved: tile.isSaved ? tile.isSaved : null,
+                isSaved: tile.isSaved ? tile.isSaved : 0,
                 updatedAt: 0,
                 savedBy: user.id,
               }}

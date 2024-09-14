@@ -9,20 +9,12 @@ function TileDetail() {
 
   const { data, isPending, isError, isSuccess } = useTile(Number(tileId))
 
-  // const { data, isPending, isError, isSuccess } = useQuery({
-  //   queryKey: ['tiles', tileId],
-  //   queryFn: () => api.getTileById(tileId),
-  //   staleTime: Infinity,
-  //   refetchOnWindowFocus: false,
-  //   refetchOnMount: false,
-  // })
-
   let outlet = <></>
   isPending && (outlet = <p>Loading...</p>)
   isError && (outlet = <p>Error Loading Tile</p>)
   isSuccess && (outlet = <TileExpanded tile={data} />)
 
-  console.log(data)
+  console.log('TileDetail.tsx data', data)
 
   return (
     <>
