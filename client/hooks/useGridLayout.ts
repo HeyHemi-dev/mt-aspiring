@@ -21,7 +21,7 @@ function useGridLayout(
       const cellWidth = (gridWidthPx - gridGapTotal) / colCount
       const cellHeight = cellWidth
 
-      console.log(gridGapPx, gridWidthPx, colCount, cellWidth, cellHeight)
+      // console.log(gridGapPx, gridWidthPx, colCount, cellWidth, cellHeight)
 
       // Apply grid styles directly to the element
       grid.style.overflow = 'hidden'
