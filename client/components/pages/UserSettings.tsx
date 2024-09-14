@@ -68,9 +68,8 @@ function UserSettings() {
     }
   }, [user, form])
 
-  // Handle submit
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // console.log('form submit values', values)
+  // Try to update the user and give feedback
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     if (user) {
       const userAuth = user.userAuth
       const userData: UserData = {
@@ -78,11 +77,11 @@ function UserSettings() {
         name: values.name,
         userType: values.isBusiness ? 'business' : 'personal',
       }
-      userMutation.mutate({ userAuth, userData })
-      if (userMutation.isError)
-        toast({ description: 'Error, changes not saved' })
-      if (userMutation.isSuccess) {
+      try {
+        await userMutation.mutateAsync({ userAuth, userData })
         toast({ description: 'Saved' })
+      } catch (error) {
+        toast({ description: 'Error, changes not saved' })
       }
     } else {
       toast({ description: 'Error, changes not saved' })
