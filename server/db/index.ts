@@ -1,6 +1,11 @@
 import knexFile from './knexfile.js'
 import knex from 'knex'
-import { SavedTileData, UserSavedTilesTable, TilesTable } from 'model/tiles.ts'
+import {
+  SavedTileData,
+  UserSavedTilesTable,
+  TilesTable,
+  TileData,
+} from 'model/tiles.ts'
 import { UserData, UsersTable } from 'model/users.ts'
 
 type Environment = 'production' | 'test' | 'development'
@@ -49,6 +54,22 @@ export function getUserSavedTiles(userId: number) {
     .join(TilesTable.table, TilesTable.id, UserSavedTilesTable.tileId)
     .select(TilesTable.all)
 }
+
+export function createTile(tileData: TileData) {
+  return connection(TilesTable.table)
+    .insert({
+      image_path: tileData.imagePath,
+      title: tileData.title,
+      description: tileData.description ?? null,
+      created_by: tileData.createdBy,
+      created_at: tileData.createdAt,
+      is_private: tileData.isPrivate,
+      location_id: tileData.locationId ?? null,
+    })
+    .returning('*')
+}
+
+// User_Saved_Tiles Table Queries --- User_Saved_Tiles Table Queries ---
 
 export function getSavedTileRecord(recordId: number) {
   return connection(UserSavedTilesTable.table)

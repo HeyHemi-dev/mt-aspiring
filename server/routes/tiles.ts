@@ -1,7 +1,8 @@
 import express from 'express'
 import * as db from '../db/index.ts'
 import camelcaseKeys from 'camelcase-keys'
-import { SavedTileData, Tile } from 'model/tiles.ts'
+import { SavedTile, SavedTileData, Tile, TileData } from 'model/tiles.ts'
+import { User } from 'model/users.ts'
 
 const router = express.Router()
 
@@ -53,7 +54,7 @@ router.get('/saved/:userId', async (req, res) => {
   }
 })
 
-// Save/Unsave a tile
+//Save/Unsave a tile
 router.put('/saved', async (req, res) => {
   try {
     const saveRequest = req.body as SavedTileData
@@ -91,5 +92,94 @@ router.put('/saved', async (req, res) => {
     res.sendStatus(500)
   }
 })
+
+//Create a tile
+router.post('/', async (req, res) => {
+  try {
+    //Get the data
+    const tileData = req.body as TileData
+    const userAuth = tileData.createdBy
+
+    //Create record in tiles table
+    let newTiles = await db.createTile(tileData)
+    newTiles = camelcaseKeys(newTiles)
+    const newTile = newTiles[0] as Tile
+
+    //Get the user info (for userId)
+    let user = await db.getUserByAuthRef(userAuth)
+    user = camelcaseKeys(user) as User
+
+    //Create user saved tile record
+    const saveRequest: SavedTileData = {
+      tileId: newTile.id,
+      savedBy: user.id,
+      isSaved: 1,
+      updatedAt: Date.now(),
+    }
+    let saveRecords = await db.createSavedTileRecord(saveRequest)
+    saveRecords = camelcaseKeys(saveRecords)
+    const saveRecord = saveRecords[0] as SavedTile
+
+    //Get tile with saved info
+    let data = await db.getTileById(newTile.id, saveRecord.savedBy)
+    data = camelcaseKeys(data)
+    res.json(data)
+  } catch {
+    res.sendStatus(500)
+  }
+})
+
+//Create a tile
+// router.post('/', async (req, res) => {
+//   try {
+//     // Get the data
+//     const tileData = req.body as TileData
+//     console.log('Received tile data:', tileData) // Log incoming request data
+
+//     const userAuth = tileData.createdBy
+//     console.log('User auth reference:', userAuth) // Log user auth reference
+
+//     // Create record in tiles table
+//     let newTiles = await db.createTile(tileData)
+//     console.log('New tile created:', newTiles) // Log after creating a tile
+
+//     newTiles = camelcaseKeys(newTiles)
+//     const newTile = newTiles[0] as Tile
+//     console.log('Formatted new tile:', newTile) // Log after camelcaseKeys
+
+//     // Get the user info (for userId)
+//     let user = await db.getUserByAuthRef(userAuth)
+//     console.log('User fetched from db:', user) // Log user data
+
+//     user = camelcaseKeys(user) as User
+//     console.log('Formatted user data:', user) // Log after camelcaseKeys
+
+//     // Create user saved tile record
+//     const saveRequest: SavedTileData = {
+//       tileId: newTile.id,
+//       savedBy: user.id,
+//       isSaved: 1,
+//       updatedAt: Date.now(),
+//     }
+//     console.log('Save request data:', saveRequest) // Log save request
+
+//     let saveRecords = await db.createSavedTileRecord(saveRequest)
+//     console.log('Saved tile record:', saveRecords) // Log saved record
+
+//     saveRecords = camelcaseKeys(saveRecords)
+//     const saveRecord = saveRecords[0] as SavedTile
+//     console.log('Formatted save record:', saveRecord) // Log after formatting
+
+//     // Get tile with saved info
+//     let data = await db.getTileById(newTile.id, saveRecord.savedBy)
+//     console.log('Tile with saved info:', data) // Log fetched tile with saved info
+
+//     data = camelcaseKeys(data)
+//     res.json(data)
+//   } catch (error) {
+//     console.error('Error in creating tile:', error) // Log the error message
+//     res.sendStatus(500)
+//   }
+// })
 
 export default router
