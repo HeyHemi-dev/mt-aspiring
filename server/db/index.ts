@@ -28,6 +28,7 @@ export function getPublicTiles(savedBy: number | null) {
     })
     .where(TilesTable.isPrivate, 0)
     .select(TilesTable.all, UserSavedTilesTable.isSaved)
+    .orderBy(TilesTable.createdAt, 'desc')
 }
 // This query function will likely be the first to optimise;
 // Especally if adding some kind of ranked sorting.
@@ -53,6 +54,7 @@ export function getUserSavedTiles(userId: number) {
     .join(UserSavedTilesTable.table, UserSavedTilesTable.savedBy, UsersTable.id)
     .join(TilesTable.table, TilesTable.id, UserSavedTilesTable.tileId)
     .select(TilesTable.all)
+    .orderBy(TilesTable.createdAt, 'desc')
 }
 
 export function createTile(tileData: TileData) {
