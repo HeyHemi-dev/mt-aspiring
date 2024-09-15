@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 // import { useEffect } from 'react'
 import useCurrentUser from '@/hooks/use-current-user'
+import * as api from '../../api/apiClient'
 import { useToast } from '@/hooks/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -17,6 +18,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { TileData } from 'model/tiles'
+import { redirect } from 'react-router-dom'
 
 // Form input validation
 const formSchema = z.object({
@@ -48,20 +50,22 @@ function NewTileForm() {
     },
   })
 
-  // Try to update the user and give feedback
+  // Try to create a new tile and navigate to it
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (user) {
       const tileData: TileData = {
         imagePath: values.imagePath,
         title: values.title,
-        description: values.description ? values.description : null,
+        description: values.description ?? null,
         createdAt: new Date().toISOString(),
         createdBy: user.userAuth,
         isPrivate: 0,
       }
       try {
-        console.log('tileData', tileData)
+        console.log('submit tileData', tileData)
+        const newTile = await api.createTile(tileData)
         toast({ description: 'Saved' })
+        return redirect(`/tiles/${newTile.id}`)
       } catch (error) {
         toast({ description: 'Error, changes not saved' })
       }
