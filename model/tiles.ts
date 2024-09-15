@@ -1,10 +1,10 @@
 export interface TileData {
-  imagePath: string | null
+  imagePath: string
   title: string
   description?: string | null
   createdAt: string //timestamp
   createdBy: string //uuid
-  isPrivate?: 1 | 0
+  isPrivate: 1 | 0
   locationId?: string | number | null
 }
 
