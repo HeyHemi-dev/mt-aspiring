@@ -10,7 +10,7 @@ function TileListItem({ tile }: { tile: Tile }) {
     <Card className="tile-list-item grid grid-rows-subgrid overflow-hidden">
       <Link to={tileLink} className="col-span-full row-span-full flex">
         <img
-          src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+          src={tile.imagePath}
           alt={tile.title}
           className="h-full w-full rounded-md object-cover"
         />
