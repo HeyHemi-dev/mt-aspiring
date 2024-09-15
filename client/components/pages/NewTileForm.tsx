@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form'
 // import { useEffect } from 'react'
 import useCurrentUser from '@/hooks/use-current-user'
-import * as api from '../../api/apiClient'
+import useCreateTile from '@/hooks/use-create-tile'
 import { useToast } from '@/hooks/use-toast'
+import { useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
@@ -18,11 +19,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { TileData } from 'model/tiles'
-import { redirect } from 'react-router-dom'
 
 // Form input validation
 const formSchema = z.object({
-  imagePath: z.string().url().endsWith('.jpg'),
+  imagePath: z.string().url().startsWith('https://images.unsplash.com/'),
   title: z
     .string()
     .min(2, {
@@ -39,6 +39,8 @@ const formSchema = z.object({
 function NewTileForm() {
   const { toast } = useToast()
   const { data: user, isPending, isError } = useCurrentUser()
+  const tileMutation = useCreateTile()
+  const navigate = useNavigate()
 
   // Set form default values
   const form = useForm<z.infer<typeof formSchema>>({
@@ -63,9 +65,9 @@ function NewTileForm() {
       }
       try {
         console.log('submit tileData', tileData)
-        const newTile = await api.createTile(tileData)
+        const newTile = await tileMutation.mutateAsync({ tileData })
         toast({ description: 'Saved' })
-        return redirect(`/tiles/${newTile.id}`)
+        navigate(`/tiles/${newTile.id}`)
       } catch (error) {
         toast({ description: 'Error, changes not saved' })
       }
@@ -90,14 +92,14 @@ function NewTileForm() {
             name="imagePath"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image URL</FormLabel>
+                <FormLabel>Link to Image from Unsplash.com</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="https://example.com/image.jpg"
+                    placeholder="https://images.unsplash.com/"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>Link to an image.</FormDescription>
+                <FormDescription>{`To get the correct url; right-click on a photo and choose "Open image in new tab"`}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
