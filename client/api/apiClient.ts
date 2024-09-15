@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { SavedTileData, Tile } from 'model/tiles'
+import { SavedTileData, Tile, TileData } from 'model/tiles'
 import { User, UserData } from 'model/users'
 
 const apiPath = '/api/v1'
@@ -24,6 +24,16 @@ export async function getTileById(
   slug = currentUser ? `${slug}?currentUser=${currentUser.id}` : slug
 
   const res = await request.get(apiPath + slug)
+  return res.body
+}
+
+//Create a tile
+export async function createTile(tileData: TileData): Promise<Tile> {
+  const slug = `/tiles`
+  const res = await request
+    .post(apiPath + slug)
+    .send(JSON.stringify(tileData))
+    .set('Content-Type', 'application/json')
   return res.body
 }
 
