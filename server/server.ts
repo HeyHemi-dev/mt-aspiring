@@ -1,8 +1,8 @@
 import * as Path from 'node:path'
 import express from 'express'
 import cors, { CorsOptions } from 'cors'
-import tileRoutes from './routes/tiles'
-import userRoutes from './routes/users'
+import tileRoutes from './routes/tiles.ts'
+import userRoutes from './routes/users.ts'
 
 const server = express()
 
