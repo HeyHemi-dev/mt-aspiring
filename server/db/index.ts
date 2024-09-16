@@ -5,8 +5,8 @@ import {
   UserSavedTilesTable,
   TilesTable,
   TileData,
-} from 'model/tiles.ts'
-import { UserData, UsersTable } from 'model/users.ts'
+} from '../../model/tiles.ts'
+import { UserData, UsersTable } from '../../model/users.ts'
 
 type Environment = 'production' | 'test' | 'development'
 

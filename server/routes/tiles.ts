@@ -1,8 +1,8 @@
 import express from 'express'
 import * as db from '../db/index.ts'
 import camelcaseKeys from 'camelcase-keys'
-import { SavedTile, SavedTileData, Tile, TileData } from 'model/tiles.ts'
-import { User } from 'model/users.ts'
+import { SavedTile, SavedTileData, Tile, TileData } from '../../model/tiles.ts'
+import { User } from '../../model/users.ts'
 
 const router = express.Router()
 

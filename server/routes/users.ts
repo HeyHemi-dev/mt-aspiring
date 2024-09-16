@@ -1,7 +1,7 @@
 import express from 'express'
 import * as db from '../db/index.ts'
 import camelcaseKeys from 'camelcase-keys'
-import { User, UserData } from 'model/users.ts'
+import { User, UserData } from '../../model/users.ts'
 
 const router = express.Router()
 
