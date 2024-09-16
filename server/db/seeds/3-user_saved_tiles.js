@@ -699,12 +699,6 @@ export async function seed(knex) {
       updated_at: 1,
     },
     {
-      saved_by: 3,
-      tile_id: 40,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
       saved_by: 4,
       tile_id: 5,
       is_saved: 1,
@@ -857,12 +851,6 @@ export async function seed(knex) {
     {
       saved_by: 2,
       tile_id: 3,
-      is_saved: 1,
-      updated_at: 1,
-    },
-    {
-      saved_by: 3,
-      tile_id: 40,
       is_saved: 1,
       updated_at: 1,
     },

@@ -336,7 +336,7 @@ export async function seed(knex) {
     },
     {
       image_path:
-        'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80',
+        'https://images.unsplash.com/photo-1488846343176-08e05ab9a2a1',
       title: 'Best Bridal Shops in NZ',
       description:
         'Find the perfect wedding dress at these top bridal shops in New Zealand.',
@@ -347,7 +347,7 @@ export async function seed(knex) {
     },
     {
       image_path:
-        'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80',
+        'https://images.unsplash.com/photo-1598976702797-f3a7cb7bc3f5',
       title: 'Romantic Wedding Proposal Ideas',
       description:
         'Creative and romantic wedding proposal ideas to sweep your partner off their feet.',
@@ -380,7 +380,7 @@ export async function seed(knex) {
     },
     {
       image_path:
-        'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80',
+        'https://images.unsplash.com/photo-1604004233302-14f58a92070b',
       title: 'Small Wedding Ideas',
       description:
         'Tips and ideas for planning an intimate and personal small wedding.',
@@ -402,7 +402,7 @@ export async function seed(knex) {
     },
     {
       image_path:
-        'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80',
+        'https://images.unsplash.com/photo-1505976378723-9726b54e9bb9',
       title: 'Unique Wedding Cake Flavors',
       description:
         'Creative and delicious wedding cake flavor ideas for your special day.',
@@ -424,7 +424,7 @@ export async function seed(knex) {
     },
     {
       image_path:
-        'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80',
+        'https://images.unsplash.com/photo-1425421598808-4a22ce59cc97',
       title: 'Backyard Wedding Ideas',
       description:
         'Budget-friendly and intimate ideas for a beautiful backyard wedding.',
@@ -435,7 +435,7 @@ export async function seed(knex) {
     },
     {
       image_path:
-        'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80',
+        'https://images.unsplash.com/photo-1684833685209-0f23802f7d40',
       title: 'Modern Wedding Invitation Wording',
       description: 'Contemporary wording ideas for your wedding invitations.',
       created_at: '2024-08-29T09:45:22Z',
